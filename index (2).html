@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title> 
+        <style>
+            body {
+            background-color: lightgray;
+            margin: 10px;
+            padding: 10px;
+        }
+        #título {
+            color:rebeccapurple;
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+        }   
+        .categoria {
+            font-weight: bold;
+            color :darkgreen;   
+        }
+        button {
+            background-color: pink;
+            color: black;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: 1px solid black;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        textarea {
+            width: 20%;
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+            resize: vertical;
+            color:black;
+            background-color: yellowgreen;
+            font-weight: bold;
+        }
+        input {
+            border: 1px solid black;    
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        </style>
+    </head>
+    <body>
+        <h1 id="título">Registro de la persona usuaria</h1>
+        <form action="/login.php" method="post" id="formulario">
+            <label for="usuario" class="categoria">Usuario:<input type="text" name="usuario" id="usuario" placeholder="Usuario" required></label>
+            <ul>
+            <li><label for="nombre" class="categoria">Nombre:
+                 <input type="text" name="nombre" id="nombre" placeholder="Nombre" required></label></li>
+            <li><label for="apellido" class="categoria">Apellido:<input type="text" name="apellido" id="apellido" placeholder="Apellido" required></label></li>
+            <li><label for="correo" class="categoria">Correo electrónico:<input type="email" name="correo" id="correo" placeholder="Correo electrónico" required></label></li>
+            <li><label for="contraseña" class="categoria">Contraseña:<input type="password" name="contraseña" id="contraseña" placeholder="Contraseña" required></label></li>
+            <li><label for="comentarios" class="categoria">Comentarios:<textarea rows="5" cols="30" name="comentarios" id="comentarios" placeholder="Comentarios"></textarea></label></li>
+            <li><label for="actividad" class="categoria">Actividades:<select name="actividad" id="actividad">
+                <option value="Yoga">Yoga</option>
+                <option value="Pintura">Pintura</option>
+                <option value="Cocina">Cocina</option>
+                <option value="Fotografía">Fotografía</option>
+                <option value="Música">Música</option>
+            </select></label></li>
+            <li><button type="submit">Registrarse</button></li>
+            </ul>
+        </form>
+    </body>
+</html>
