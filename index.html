@@ -1,73 +1,329 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title> 
-        <style>
-            body {
-            background-color: lightgray;
-            margin: 10px;
-            padding: 10px;
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Básica</title>
+
+    <link rel="stylesheet" href="styles.css">
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:linear-gradient(grey);
+
+    display:flex;
+
+    justify-content:left;
+
+    align-items:center;
+
+    min-height:100vh;
+
+}
+
+.contenedor{
+
+    display:flex;
+
+    justify-content:left;
+
+    align-items:center;
+
+}
+
+.calculadora{
+
+    width:380px;
+
+    background: skyblue;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+
+}
+
+#titulo{
+
+    text-align:center;
+
+    color:black;
+
+    margin-bottom:20px;
+
+    font-size:30px;
+
+}
+
+#pantalla{
+
+    width:100%;
+
+    height:70px;
+
+    border:3px solid black;
+
+    border-radius:12px;
+
+    margin-bottom:20px;
+
+    font-size:32px;
+
+    text-align:right;
+
+    padding:15px;
+
+    background:white;
+
+    color: black;
+
+}
+
+.botones{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:12px;
+
+}
+
+.btn{
+
+    height:70px;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    font-weight:bold;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 8px 15px rgba(0,0,0,.2);
+
+}
+
+.numero{
+
+    background:white;
+
+    color:black;
+
+}
+
+.numero:hover{
+
+    background:white;
+
+}
+
+.operador{
+
+    background:blue;
+
+    color:white;
+
+}
+
+.operador:hover{
+
+    background:blue;
+
+}
+
+.limpiar{
+
+    background: pink;
+
+    color:black;
+
+}
+
+.limpiar:hover{
+
+    background:red;
+
+}
+
+.borrar{
+
+    background:orange;
+
+    color:white;
+
+}
+
+.borrar:hover{
+
+    background:orange;
+
+}
+
+.igual{
+
+    background:green;
+
+    color:white;
+
+}
+
+.igual:hover{
+
+    background:green;
+
+}
+
+
+.cero{
+
+    grid-column:span 2;
+
+}
+</style>
+</head>
+<body>
+
+<div class="contenedor">
+
+    <div class="calculadora">
+
+        <h1 id="titulo">Calculadora Básica</h1>
+
+        <input
+            type="text"
+            id="pantalla"
+            readonly
+            placeholder="0">
+
+        <div class="botones">
+
+            <button class="btn limpiar" onclick="limpiar()">C</button>
+            <button class="btn borrar" onclick="borrar()">⌫</button>
+            <button class="btn operador" onclick="agregar('/')">÷</button>
+            <button class="btn operador" onclick="agregar('*')">×</button>
+
+            <button class="btn numero" onclick="agregar('7')">7</button>
+            <button class="btn numero" onclick="agregar('8')">8</button>
+            <button class="btn numero" onclick="agregar('9')">9</button>
+            <button class="btn operador" onclick="agregar('-')">−</button>
+
+            <button class="btn numero" onclick="agregar('4')">4</button>
+            <button class="btn numero" onclick="agregar('5')">5</button>
+            <button class="btn numero" onclick="agregar('6')">6</button>
+            <button class="btn operador" onclick="agregar('+')">+</button>
+
+            <button class="btn numero" onclick="agregar('1')">1</button>
+            <button class="btn numero" onclick="agregar('2')">2</button>
+            <button class="btn numero" onclick="agregar('3')">3</button>
+            <button class="btn igual" onclick="calcular()" rowspan="2">=</button>
+
+            <button class="btn cero" onclick="agregar('0')">0</button>
+            <button class="btn numero" onclick="agregar('.')">.</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+const pantalla = document.getElementById("pantalla");
+
+function agregar(valor){
+
+    pantalla.value += valor;
+
+}
+
+function limpiar(){
+
+    pantalla.value = "";
+
+}
+
+function borrar(){
+
+    pantalla.value = pantalla.value.slice(0,-1);
+
+}
+
+function calcular(){
+
+    try{
+
+        if(pantalla.value===""){
+
+            return;
+
         }
-        #título {
-            color:rebeccapurple;
-            text-align: center;
-            font-size: 30px;
-            font-weight: bold;
-            font-family: Arial, sans-serif;
-        }   
-        .categoria {
-            font-weight: bold;
-            color :darkgreen;   
-        }
-        button {
-            background-color: pink;
-            color: black;
-            font-weight: bold;
-            padding: 10px 20px;
-            border: 1px solid black;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        textarea {
-            width: 20%;
-            padding: 10px;
-            border: 1px solid black;
-            border-radius: 5px;
-            resize: vertical;
-            color:black;
-            background-color: yellowgreen;
-            font-weight: bold;
-        }
-        input {
-            border: 1px solid black;    
-        }
-        li {
-            margin-bottom: 10px;
-        }
-        </style>
-    </head>
-    <body>
-        <h1 id="título">Registro de la persona usuaria</h1>
-        <form action="/login.php" method="post" id="formulario">
-            <label for="usuario" class="categoria">Usuario:<input type="text" name="usuario" id="usuario" placeholder="Usuario" required></label>
-            <ul>
-            <li><label for="nombre" class="categoria">Nombre:
-                 <input type="text" name="nombre" id="nombre" placeholder="Nombre" required></label></li>
-            <li><label for="apellido" class="categoria">Apellido:<input type="text" name="apellido" id="apellido" placeholder="Apellido" required></label></li>
-            <li><label for="correo" class="categoria">Correo electrónico:<input type="email" name="correo" id="correo" placeholder="Correo electrónico" required></label></li>
-            <li><label for="contraseña" class="categoria">Contraseña:<input type="password" name="contraseña" id="contraseña" placeholder="Contraseña" required></label></li>
-            <li><label for="comentarios" class="categoria">Comentarios:<textarea rows="5" cols="30" name="comentarios" id="comentarios" placeholder="Comentarios"></textarea></label></li>
-            <li><label for="actividad" class="categoria">Actividades:<select name="actividad" id="actividad">
-                <option value="Yoga">Yoga</option>
-                <option value="Pintura">Pintura</option>
-                <option value="Cocina">Cocina</option>
-                <option value="Fotografía">Fotografía</option>
-                <option value="Música">Música</option>
-            </select></label></li>
-            <li><button type="submit">Registrarse</button></li>
-            </ul>
-        </form>
-    </body>
+
+        pantalla.value = eval(pantalla.value);
+
+    }
+
+    catch{
+
+        pantalla.value = "Error";
+
+    }
+
+}
+
+document.addEventListener("keydown",function(event){
+
+    const tecla = event.key;
+
+    if(!isNaN(tecla) || tecla=="+" || tecla=="-" || tecla=="*" || tecla=="/" || tecla=="."){
+
+        agregar(tecla);
+
+    }
+
+    if(tecla==="Enter"){
+
+        event.preventDefault();
+
+        calcular();
+
+    }
+
+    if(tecla==="Backspace"){
+
+        borrar();
+
+    }
+
+    if(tecla==="Escape"){
+
+        limpiar();
+
+    }
+
+});
+</script>
+
+</body>
 </html>
